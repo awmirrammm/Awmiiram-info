@@ -1,0 +1,382 @@
+html, body {
+    max-height: 100vh;
+    overflow: visible; /* Prevent scrollbars if content overflows */
+    background-color: black; /* Ensure background is black */
+}
+
+html{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    background-color: black; /* Changed to fully black */
+    position: relative;
+    z-index: 1; /* Ensure body content is above the pseudo-element */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #E0D9D9;
+}
+
+.background-slideshow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(5px); /* Adjust blur amount as needed */
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out; /* Reduced transition time */
+}
+
+.background-slideshow.active {
+    opacity: 1;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.login-card {
+    width: auto;
+    max-width: 400px;
+    min-width: 320px;
+    background-color: rgba(0, 0, 0, 0.527); /* Semi-transparent black */
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.185);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    box-sizing: border-box;
+    color: #E0D9D9;
+    min-height: 300px;
+}
+
+.login-profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #808080; /* Default gray background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensure image stays within circle */
+    margin-bottom: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.login-profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.login-card h2 {
+    font-size: 2em;
+    margin-bottom: 25px;
+    color: #E0D9D9;
+}
+
+.auth-toggle-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.auth-tab-button {
+    background-color: transparent;
+    border: none;
+    color: #B0B0B0;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    outline: none;
+}
+
+.auth-tab-button:hover {
+    color: #E0D9D9;
+}
+
+.auth-tab-button.active {
+    color: #0095f6; /* Instagram blue for active tab */
+    border-bottom: 2px solid #0095f6;
+}
+
+.auth-form {
+    width: 100%;
+}
+
+.input-group {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    color: #B0B0B0;
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"],
+.input-group input[type="email"],
+.input-group input[type="file"] { /* Changed to file input */
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.6); /* Darker input background */
+    color: #E0D9D9;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.input-group input[type="text"]:focus,
+.input-group input[type="password"]:focus,
+.input-group input[type="email"]:focus,
+.input-group input[type="file"]:focus { /* Changed to file input */
+    outline: none;
+    border-color: #5A9690; /* Highlight on focus */
+    box-shadow: 0 0 8px rgba(90, 150, 144, 0.4); /* Glow effect */
+}
+
+/* Style for the file input button (cross-browser) */
+.input-group input[type="file"]::-webkit-file-upload-button,
+.input-group input[type="file"]::file-selector-button {
+    background-color: #5A9690; /* Accent color for the button */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+.input-group input[type="file"]::-webkit-file-upload-button:hover,
+.input-group input[type="file"]::file-selector-button:hover {
+    background-color: #4a7d77;
+}
+
+.login-button {
+    background-color: #0095f6;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.login-button:hover {
+    background-color: #007acb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .login-card {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        padding: 20px; /* Adjust padding for smaller screens */
+        min-height: 280px;
+    }
+
+    .login-card h2 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    .auth-tab-button {
+        font-size: 1em;
+        padding: 8px 12px;
+    }
+
+    .input-group label {
+        font-size: 0.85em;
+        margin-bottom: 5px;
+    }
+
+    .input-group input[type="text"],
+    .input-group input[type="password"],
+    .input-group input[type="email"],
+    .input-group input[type="file"] {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    .login-button {
+        padding: 10px 20px;
+        font-size: 1em;
+        margin-top: 10px;
+    }
+
+    .skeleton-loader {
+        padding: 20px; /* Match login card padding */
+        min-height: 280px; /* Match login card min-height */
+    }
+
+    .skeleton-profile-avatar-placeholder {
+        width: 80px;
+        height: 80px;
+    }
+
+    .skeleton-header-placeholder {
+        height: 25px;
+        width: 60%;
+    }
+
+    .skeleton-button-placeholder.short {
+        width: 70px;
+        height: 30px;
+    }
+
+    .skeleton-text-line.label {
+        height: 10px;
+        width: 35%;
+    }
+
+    .skeleton-text-line.input {
+        height: 35px;
+    }
+
+    .skeleton-button-placeholder.long {
+        height: 40px;
+    }
+}
+
+/* Skeleton Loader Styles - Adapted for Login Card */
+.skeleton-loader {
+    width: auto; /* Match login card width */
+    max-width: 400px; /* Match login card max-width */
+    min-width: 320px; /* Match login card min-width */
+    max-height: 600px;
+    min-height: 580px;
+    background-color: rgba(0, 0, 0, 0.4); /* Match login card transparency */
+    backdrop-filter: blur(10px); /* Match login card blur */
+    border-radius: 15px; /* Match login card border-radius */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Match login card border */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align like login card */
+    padding: 30px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100; /* Increased z-index to be on top of login-container */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.5s ease-in-out;
+}
+
+.skeleton-profile-avatar-placeholder {
+    width: 100px; /* Match login avatar size */
+    height: 100px; /* Match login avatar size */
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    margin-bottom: 20px;
+    animation: pulse 1.5s infinite;
+    border: 2px solid rgba(255, 255, 255, 0.2); /* Match login avatar border */
+}
+
+.skeleton-header-placeholder {
+    height: 30px; /* For h2 */
+    width: 70%;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    margin-bottom: 25px;
+    animation: pulse 1.5s infinite;
+}
+
+.skeleton-toggle-buttons-placeholder {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.skeleton-button-placeholder {
+    height: 35px; /* Approximate button height */
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    animation: pulse 1.5s infinite;
+    margin: 0 5px; /* Space between toggle buttons */
+}
+
+.skeleton-button-placeholder.short {
+    width: 80px; /* For toggle buttons */
+}
+
+.skeleton-input-group-placeholder {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.skeleton-text-line {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    animation: pulse 1.5s infinite;
+}
+
+.skeleton-text-line.label {
+    height: 12px;
+    width: 40%;
+    margin-bottom: 8px;
+}
+
+.skeleton-text-line.input {
+    height: 40px;
+    width: 100%;
+}
+
+.skeleton-button-placeholder.long {
+    width: 100%; /* For submit buttons */
+    height: 45px;
+    margin-top: 15px;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}

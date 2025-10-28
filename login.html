@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="login.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+</head>
+<body>
+
+    <div class="skeleton-loader">
+        <div class="skeleton-profile-avatar-placeholder"></div>
+        <div class="skeleton-header-placeholder"></div>
+        <div class="skeleton-toggle-buttons-placeholder">
+            <div class="skeleton-button-placeholder short"></div>
+            <div class="skeleton-button-placeholder short"></div>
+        </div>
+        <div class="skeleton-input-group-placeholder">
+            <div class="skeleton-text-line label"></div>
+            <div class="skeleton-text-line input"></div>
+        </div>
+        <div class="skeleton-input-group-placeholder">
+            <div class="skeleton-text-line label"></div>
+            <div class="skeleton-text-line input"></div>
+        </div>
+        <div class="skeleton-button-placeholder long"></div>
+    </div>
+    <div class="background-slideshow"></div>
+
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-profile-avatar">
+                <img id="currentProfileAvatar" src="" alt="">
+            </div>
+            <h2>login</h2>
+
+            <div class="auth-toggle-buttons">
+                <button id="signInTab" class="auth-tab-button active">Sign In</button>
+                <button id="signUpTab" class="auth-tab-button">Sign Up</button>
+            </div>
+
+            <form id="signInForm" class="auth-form">
+                <div class="input-group">
+                    <label for="signInUsername">Username</label>
+                    <input type="text" id="signInUsername" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="signInPassword">Password</label>
+                    <input type="password" id="signInPassword" name="password" required>
+                </div>
+                <button type="submit" class="login-button">Sign In</button>
+            </form>
+
+            <form id="signUpForm" class="auth-form" style="display: none;">
+                <div class="input-group">
+                    <label for="signUpUsername">Username</label>
+                    <input type="text" id="signUpUsername" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="signUpPassword">Password</label>
+                    <input type="password" id="signUpPassword" name="password" required>
+                </div>
+                <div class="input-group">
+                    <label for="signUpEmail">Email</label>
+                    <input type="email" id="signUpEmail" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="signUpProfileImageFile">Upload Profile Image (PNG)</label>
+                    <input type="file" id="signUpProfileImageFile" name="profileImageFile" accept="image/png">
+                </div>
+                <button type="submit" class="login-button">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+    
+</body>
+</html>
