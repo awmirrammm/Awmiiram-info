@@ -1,0 +1,446 @@
+html, body {
+    max-height: 100vh;
+    overflow: visible; /* Prevent scrollbars if content overflows */
+    background-color: black; /* Ensure background is black */
+}
+
+html{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    background-color: black; /* Changed to fully black */
+    position: relative;
+    z-index: 1; /* Ensure body content is above the pseudo-element */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #E0D9D9;
+}
+
+/* ===== Custom Scrollbar ===== */
+::-webkit-scrollbar {
+    width: 10px;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+/* Thumb */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00aaff, #005f99);
+    border-radius: 10px;
+    box-shadow: 0 0 15px #00aaffaa;
+}
+
+/* Thumb Hover */
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #00cfff, #0077b3);
+    box-shadow: 0 0 20px #00cfff;
+}
+
+#trapBG {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    background: black;
+}
+
+.background-slideshow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(5px); /* Adjust blur amount as needed */
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out; /* Reduced transition time */
+}
+
+.background-slideshow.active {
+    opacity: 1;
+}
+
+.headerr{
+    width: 100;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.527);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.185);
+
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    opacity: 0; /* Initially hidden */
+    pointer-events: none; /* Disable interactions when hidden */
+}
+
+.login-card {
+    width: 90%; /* Use percentage for better flexibility */
+    max-width: 400px;
+    min-width: 280px; /* Allow smaller min-width for very small screens */
+    background-color: rgba(0, 0, 0, 0.527);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.185);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px; /* Adjust padding for better look */
+    box-sizing: border-box;
+    color: #E0D9D9;
+    min-height: 300px; /* Maintain minimum height */
+}
+
+.login-profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #808080; /* Default gray background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensure image stays within circle */
+    margin-bottom: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.login-profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.login-card h2 {
+    font-size: 2em;
+    margin-bottom: 25px;
+    color: #E0D9D9;
+}
+
+.auth-toggle-buttons {
+    display: flex;
+    justify-content: space-around; /* Distribute space between buttons */
+    margin-bottom: 25px; /* Increased margin for better spacing */
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px; /* Add padding to the bottom of the border */
+}
+
+.auth-tab-button {
+    background-color: transparent;
+    border: none;
+    color: #B0B0B0;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    outline: none;
+}
+
+.auth-tab-button:hover {
+    color: #E0D9D9;
+}
+
+.auth-tab-button.active {
+    color: #0095f6; /* Instagram blue for active tab */
+    border-bottom: 2px solid #0095f6;
+}
+
+.auth-form {
+    width: 100%;
+}
+
+.input-group {
+    width: 100%;
+    margin-bottom: 25px; /* Increased margin for better spacing */
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    color: #B0B0B0;
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"],
+.input-group input[type="email"],
+.input-group input[type="file"] { /* Changed to file input */
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.6); /* Darker input background */
+    color: #E0D9D9;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.input-group input[type="text"]:focus,
+.input-group input[type="password"]:focus,
+.input-group input[type="email"]:focus,
+.input-group input[type="file"]:focus { /* Changed to file input */
+    outline: none;
+    border-color: #5A9690; /* Highlight on focus */
+    box-shadow: 0 0 8px rgba(90, 150, 144, 0.4); /* Glow effect */
+}
+
+/* Style for the file input button (cross-browser) */
+.input-group input[type="file"]::-webkit-file-upload-button,
+.input-group input[type="file"]::file-selector-button {
+    background-color: #5A9690; /* Accent color for the button */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+.input-group input[type="file"]::-webkit-file-upload-button:hover,
+.input-group input[type="file"]::file-selector-button:hover {
+    background-color: #4a7d77;
+}
+
+.login-button {
+    background-color: #0095f6;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.login-button:hover {
+    background-color: #007acb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .login-card {
+        width: 95%; /* Make it slightly wider on tablets */
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        padding: 15px; /* Adjust padding for smaller screens */
+        min-height: 250px; /* Adjusted min-height for smaller screens */
+    }
+
+    .login-card h2 {
+        font-size: 1.6em;
+        margin-bottom: 15px;
+    }
+
+    .auth-tab-button {
+        font-size: 0.9em;
+        padding: 6px 10px;
+    }
+
+    .input-group label {
+        font-size: 0.8em;
+        margin-bottom: 4px;
+    }
+
+    .input-group input[type="text"],
+    .input-group input[type="password"],
+    .input-group input[type="email"],
+    .input-group input[type="file"] {
+        padding: 8px;
+        font-size: 0.85em;
+    }
+
+    .login-button {
+        padding: 10px 18px;
+        font-size: 0.9em;
+        margin-top: 10px;
+    }
+
+    .skeleton-loader {
+        padding: 15px; /* Match login card padding */
+        min-height: 250px; /* Match login card min-height */
+        max-height: 550px; /* Adjust max height for smaller screens */
+        min-width: 280px; /* Match login card min-width */
+    }
+
+    .skeleton-profile-avatar-placeholder {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 15px;
+    }
+
+    .skeleton-header-placeholder {
+        height: 22px;
+        width: 55%;
+        margin-bottom: 20px;
+    }
+
+    .skeleton-toggle-buttons-placeholder {
+        margin-bottom: 20px;
+        padding-bottom: 8px;
+    }
+
+    .skeleton-button-placeholder.short {
+        width: 60px;
+        height: 25px;
+    }
+
+    .skeleton-input-group-placeholder {
+        margin-bottom: 20px;
+    }
+
+    .skeleton-text-line.label {
+        height: 9px;
+        width: 30%;
+        margin-bottom: 5px;
+    }
+
+    .skeleton-text-line.input {
+        height: 30px;
+    }
+
+    .skeleton-button-placeholder.long {
+        height: 35px;
+        margin-top: 10px;
+    }
+}
+
+/* Skeleton Loader Styles - Adapted for Login Card */
+.skeleton-loader {
+    width: 90%; /* Match login card width */
+    max-width: 400px; /* Match login card max-width */
+    min-width: 280px; /* Match login card min-width */
+    max-height: 600px;
+    min-height: 580px;
+    background-color: rgba(0, 0, 0, 0.4); /* Match login card transparency */
+    backdrop-filter: blur(10px); /* Match login card blur */
+    border-radius: 15px; /* Match login card border-radius */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Match login card border */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align like login card */
+    padding: 25px; /* Match login card padding */
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100; /* Increased z-index to be on top of login-container */
+    opacity: 1; /* Initially visible */
+    pointer-events: auto; /* Enable interactions when visible */
+    transition: opacity 0.5s ease-in-out;
+}
+
+.skeleton-profile-avatar-placeholder {
+    width: 100px; /* Match login avatar size */
+    height: 100px; /* Match login avatar size */
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    margin-bottom: 20px;
+    animation: pulse 1.5s infinite;
+    border: 2px solid rgba(255, 255, 255, 0.2); /* Match login avatar border */
+}
+
+.skeleton-header-placeholder {
+    height: 30px; /* For h2 */
+    width: 70%;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    margin-bottom: 25px;
+    animation: pulse 1.5s infinite;
+}
+
+.skeleton-toggle-buttons-placeholder {
+    display: flex;
+    justify-content: space-around; /* Match auth-toggle-buttons */
+    margin-bottom: 25px;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.skeleton-button-placeholder {
+    height: 35px; /* Approximate button height */
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    animation: pulse 1.5s infinite;
+    margin: 0 5px; /* Space between toggle buttons */
+}
+
+.skeleton-button-placeholder.short {
+    width: 80px; /* For toggle buttons */
+}
+
+.skeleton-input-group-placeholder {
+    width: 100%;
+    margin-bottom: 25px; /* Match input-group margin-bottom */
+}
+
+.skeleton-text-line {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    animation: pulse 1.5s infinite;
+}
+
+.skeleton-text-line.label {
+    height: 12px;
+    width: 40%;
+    margin-bottom: 8px;
+}
+
+.skeleton-text-line.input {
+    height: 40px;
+    width: 100%;
+}
+
+.skeleton-button-placeholder.long {
+    width: 100%; /* For submit buttons */
+    height: 45px;
+    margin-top: 15px;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}

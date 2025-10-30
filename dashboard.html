@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <div class="skeleton-loader" id="skeleton-loader">
+        <div class="skeleton-dashboard-header-placeholder"></div>
+        <div class="skeleton-dashboard-text-placeholder"></div>
+        <div class="skeleton-button-placeholder"></div>
+        <div class="skeleton-button-placeholder"></div>
+    </div>
+    <div class="background-slideshow"></div>
+
+    <div class="dashboard-container" id="dashboard-container">
+        <div class="dashboard-card">
+            <h2>Login Successful!</h2>
+            <p>You have successfully logged in.</p>
+            <button class="welcome-button">Welcome</button>
+            <button class="logout-button">Logout</button>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const skeletonLoader = document.getElementById("skeleton-loader");
+            const mainContent = document.getElementById("dashboard-container");
+
+            // Show skeleton loader initially
+            skeletonLoader.style.opacity = "1";
+            skeletonLoader.style.pointerEvents = "auto";
+            mainContent.style.opacity = "0";
+            mainContent.style.pointerEvents = "none";
+
+            // Simulate content loading
+            setTimeout(function() {
+                skeletonLoader.style.opacity = "0";
+                skeletonLoader.style.pointerEvents = "none";
+                mainContent.style.opacity = "1";
+                mainContent.style.pointerEvents = "auto";
+            }, 2000); // 2 seconds delay
+        });
+    </script>
+</body>
+</html>

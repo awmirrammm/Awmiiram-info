@@ -1,0 +1,278 @@
+html, body {
+    height: 100%;
+    overflow: hidden;
+    background-color: black;
+}
+
+html{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    background-color: black;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #E0D9D9;
+}
+
+.background-slideshow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(5px);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+}
+
+.background-slideshow.active {
+    opacity: 1;
+}
+
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    opacity: 0; /* Initially hidden */
+    pointer-events: none; /* Disable interactions when hidden */
+}
+
+.dashboard-card {
+    width: 90%; /* Use percentage for better flexibility */
+    max-width: 500px;
+    min-width: 300px; /* Adjusted min-width for better mobile experience */
+    background-color: rgba(0, 0, 0, 0.527);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.185);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 35px; /* Adjusted padding for better visual balance */
+    box-sizing: border-box;
+    color: #E0D9D9;
+    min-height: 250px;
+    text-align: center;
+}
+
+.dashboard-card h2 {
+    font-size: 2.5em;
+    margin-bottom: 25px; /* Increased margin for better spacing */
+    color: #E0D9D9;
+}
+
+.dashboard-card p {
+    font-size: 1.1em;
+    margin-bottom: 35px; /* Increased margin for better spacing */
+    color: #B0B0B0;
+}
+
+.welcome-button {
+    background-color: #0095f6; /* Instagram blue */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 220px; /* Slightly increased max-width */
+    margin-bottom: 15px; /* Space between welcome and logout buttons */
+}
+
+.welcome-button:hover {
+    background-color: #007acb; /* Darker blue on hover */
+}
+
+.logout-button {
+    background-color: #dc3545; /* Red for logout */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 220px; /* Slightly increased max-width */
+    margin-top: 15px;
+}
+
+.logout-button:hover {
+    background-color: #c82333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .dashboard-card {
+        width: 95%; /* Ensure 95% width on tablets */
+        padding: 30px; /* Slightly increased padding for tablets */
+        min-width: 280px; /* Adjusted min-width for tablets */
+    }
+    .dashboard-card h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+    .dashboard-card p {
+        font-size: 1em;
+        margin-bottom: 25px; /* Adjusted margin for tablets */
+    }
+    .welcome-button,
+    .logout-button {
+        max-width: 180px; /* Adjusted max-width for tablet buttons */
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    .skeleton-loader {
+        min-width: 280px; /* Match dashboard card min-width */
+        padding: 30px; /* Match dashboard card padding */
+    }
+
+    .skeleton-dashboard-header-placeholder {
+        height: 35px; /* Adjusted to match h2 in tablet view */
+        width: 70%;
+        margin-bottom: 20px;
+    }
+
+    .skeleton-dashboard-text-placeholder {
+        height: 16px; /* Adjusted to match p in tablet view */
+        width: 50%;
+        margin-bottom: 20px;
+    }
+
+    .skeleton-button-placeholder {
+        height: 38px; /* Adjusted to match button in tablet view */
+        max-width: 180px;
+    }
+}
+
+/* Skeleton Loader Styles - Adapted for Dashboard */
+.skeleton-loader {
+    width: 90%; /* Match dashboard card width */
+    max-width: 500px; /* Match dashboard card max-width */
+    min-width: 300px; /* Match dashboard card min-width */
+    background-color: rgba(0, 0, 0, 0.4); /* Match dashboard card transparency */
+    backdrop-filter: blur(10px); /* Match dashboard card blur */
+    border-radius: 15px; /* Match dashboard card border-radius */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Match dashboard card border */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align like dashboard card */
+    padding: 35px; /* Match dashboard card padding */
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100; /* Increased z-index to be on top of dashboard-container */
+    opacity: 1; /* Initially visible */
+    pointer-events: auto; /* Enable interactions when visible */
+    transition: opacity 0.5s ease-in-out;
+}
+
+.skeleton-dashboard-header-placeholder {
+    height: 40px; /* Adjusted to match h2 font-size and margin-bottom */
+    width: 80%; /* Match h2 width */
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    margin-bottom: 25px; /* Match h2 margin-bottom */
+    animation: pulse 1.5s infinite;
+}
+
+.skeleton-dashboard-text-placeholder {
+    height: 18px; /* Adjusted to match p font-size and margin-bottom */
+    width: 60%; /* Match p width */
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    margin-bottom: 35px; /* Match p margin-bottom */
+    animation: pulse 1.5s infinite;
+}
+
+.skeleton-button-placeholder {
+    width: 100%;
+    max-width: 220px; /* Match button max-width */
+    height: 42px; /* Adjusted to match button height */
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    animation: pulse 1.5s infinite;
+    margin-bottom: 15px; /* Match button margin-bottom */
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}
+
+/* Responsive adjustments for screens up to 480px */
+@media (max-width: 480px) {
+    .dashboard-card {
+        padding: 20px; /* Adjust padding for smaller screens */
+        min-height: 180px; /* Adjusted min-height for smaller screens */
+    }
+
+    .dashboard-card h2 {
+        font-size: 1.6em;
+        margin-bottom: 15px;
+    }
+
+    .dashboard-card p {
+        font-size: 0.85em;
+        margin-bottom: 18px;
+    }
+
+    .welcome-button,
+    .logout-button {
+        padding: 8px 15px;
+        font-size: 0.85em;
+        max-width: 150px;
+    }
+
+    .skeleton-loader {
+        padding: 20px; /* Match dashboard card padding */
+        min-height: 180px; /* Match dashboard card min-height */
+    }
+
+    .skeleton-dashboard-header-placeholder {
+        height: 30px; /* Adjusted to match h2 in mobile view */
+        width: 60%;
+        margin-bottom: 15px;
+    }
+
+    .skeleton-dashboard-text-placeholder {
+        height: 14px; /* Adjusted to match p in mobile view */
+        width: 40%;
+        margin-bottom: 15px;
+    }
+
+    .skeleton-button-placeholder {
+        height: 32px; /* Adjusted to match button in mobile view */
+        max-width: 150px;
+    }
+}
